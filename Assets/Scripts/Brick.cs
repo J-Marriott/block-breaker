@@ -6,10 +6,12 @@ public class Brick : MonoBehaviour {
 
 	public int maxHits;
 	private int timesHit;
+	private LevelManager levelManager;
 
 	// Use this for initialization
 	void Start () {
-		timesHit = 0;	
+		timesHit = 0;
+		levelManager = GameObject.FindObjectOfType<LevelManager>();	
 		
 	}
 	
@@ -20,5 +22,12 @@ public class Brick : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col) {
 		timesHit ++;
+		SimulateWin();
+	}
+
+	// TODO Remove this method once win functionality implemented
+
+	void SimulateWin (){
+		levelManager.LoadNextLevel ();
 	}
 }
